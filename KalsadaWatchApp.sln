@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KalsadaWatchApp", "KalsadaWatchApp.csproj", "{E1BDE4E8-35D4-A50E-2718-57E099458BBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1BDE4E8-35D4-A50E-2718-57E099458BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1BDE4E8-35D4-A50E-2718-57E099458BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1BDE4E8-35D4-A50E-2718-57E099458BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1BDE4E8-35D4-A50E-2718-57E099458BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE72FCFE-A2C0-48C9-8065-061390151744}
+	EndGlobalSection
+EndGlobal

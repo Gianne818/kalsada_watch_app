@@ -1,0 +1,186 @@
+@page "/register"
+@rendermode InteractiveServer
+
+<PageTitle>KalsadaWatch - Citizen Portal Registration</PageTitle>
+
+<header class="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#E2EAF4]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+      <a href="" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">account_balance</span>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight text-[#2563EB]">KalsadaWatch</span>
+          <span class="block text-xs text-[#64748B] -mt-0.5">Public Infrastructure Monitoring</span>
+        </div>
+      </a>
+
+      <!-- In-Page Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#64748B]">
+        <a href="" class="hover:text-[#2563EB] transition-colors">Home</a>
+        <a href="#report" class="hover:text-[#2563EB] transition-colors">Report Road</a>
+        <a href="#map" class="hover:text-[#2563EB] transition-colors">Road Damage Map</a>
+        <a href="#stats" class="hover:text-[#2563EB] transition-colors">Statistics</a>
+        <a href="#help" class="hover:text-[#2563EB] transition-colors">Help / Support</a>
+      </nav>
+
+      <!-- Right Nav Controls -->
+      <div class="flex items-center gap-4">
+        
+
+        <!-- Active Underline for Sign In -->
+        <a href="signin" class="relative text-sm font-semibold text-[#2563EB] pb-1">
+          Sign In
+          <span class="absolute bottom-0 left-0 w-full h-[2.5px] rounded-full bg-[#2563EB]"></span>
+        </a>
+
+        <a href="register" class="text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1E40AF] px-6 py-2.5 rounded-full shadow-sm transition-all duration-200 hover:shadow">
+          Register
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Register Form Container -->
+  <main class="flex-1 max-w-2xl mx-auto w-full py-12 px-6">
+    <div class="bg-white rounded-3xl border border-[#E2EAF4] p-8 sm:p-10 shadow-[0_10px_30px_-10px_rgba(37,99,235,0.08)]">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DBEAFE] text-[#2563EB] text-xs font-semibold mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#2563EB]"></span> Citizen Reporter Registration
+        </div>
+        <h1 class="text-2xl sm:text-[28px] font-bold text-[#0F172A] tracking-tight">Create a KalsadaWatch Account</h1>
+        <p class="text-xs sm:text-sm text-[#64748B] mt-2 leading-relaxed">
+          Register to submit road hazard reports, validate completed repairs, and receive direct dispatch updates from Public Works.
+        </p>
+      </div>
+
+      <form class="space-y-5" @onsubmit="HandleRegistration">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Full Legal Name (per Citizen ID) <span class="text-red-500">*</span></label>
+            <input type="text" @bind="fullName" placeholder="e.g. Johnathan Doe" class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15" required />
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-semibold text-[#0F172A]">16-Digit Citizen ID (NIK) <span class="text-red-500">*</span></label>
+              <span class="material-symbols-outlined text-xs text-[#94A3B8] cursor-pointer" title="Official 16-digit ID number">info</span>
+            </div>
+            <input type="text" maxlength="16" @bind="citizenId" placeholder="3271xxxxxxxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 font-mono" required />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Active Email Address <span class="text-red-500">*</span></label>
+            <div class="relative">
+              <input type="email" @bind="email" placeholder="name@email.com" class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15" required />
+              <span class="material-symbols-outlined absolute right-3 top-2.5 text-[#94A3B8] text-lg pointer-events-none">mail</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">WhatsApp / Mobile Number <span class="text-red-500">*</span></label>
+            <div class="relative">
+              <input type="tel" @bind="phoneNumber" placeholder="+62 812-xxxx-xxxx" class="w-full pl-4 pr-10 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15" required />
+              <span class="material-symbols-outlined absolute right-3 top-2.5 text-[#94A3B8] text-lg pointer-events-none">chat</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Residential District / Municipality <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <select @bind="selectedDistrict" class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 appearance-none bg-white cursor-pointer" required>
+              <option value="" disabled selected>Select your municipality or district</option>
+              <option value="Central District">Central District</option>
+              <option value="South Urban Corridor">South Urban Corridor</option>
+              <option value="East Industrial Zone">East Industrial Zone</option>
+              <option value="West Municipal Area">West Municipal Area</option>
+              <option value="Northern Coastal District">Northern Coastal District</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-3 top-2.5 text-[#94A3B8] text-lg pointer-events-none">expand_more</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Password <span class="text-red-500">*</span></label>
+            <input type="password" @bind="password" placeholder="Min. 8 characters" class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15" required />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Confirm Password <span class="text-red-500">*</span></label>
+            <input type="password" @bind="confirmPassword" placeholder="Repeat your password" class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15" required />
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 pt-2">
+          <input type="checkbox" id="terms" @bind="agreedToTerms" class="mt-0.5 w-4 h-4 rounded border-[#CBD5E1] text-[#2563EB] focus:ring-[#2563EB]" required />
+          <label for="terms" class="text-xs text-[#64748B] leading-relaxed cursor-pointer">
+            I certify that the information provided is accurate and agree to abide by the <a href="#" class="font-semibold text-[#2563EB] hover:underline">Reporting Terms & Conditions</a> and <a href="#" class="font-semibold text-[#2563EB] hover:underline">Privacy Policy</a> of KalsadaWatch.
+          </label>
+        </div>
+
+        <button type="submit" class="w-full h-12 rounded-full bg-[#2563EB] hover:bg-[#1E40AF] text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow mt-2">
+          <span class="material-symbols-outlined text-base">how_to_reg</span> Register Citizen Account
+        </button>
+
+        <p class="text-xs text-center text-[#64748B] pt-2">
+          Already have an account? <a href="signin" class="font-semibold text-[#2563EB] hover:underline">Sign in here</a>
+        </p>
+      </form>
+    </div>
+
+    <!-- 3 Reassurance Badges Row Matching Reference -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-6">
+      <div class="p-4 rounded-2xl bg-white border border-[#E2EAF4] flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-lg">shield</span>
+        </div>
+        <p class="text-[11px] text-[#64748B] leading-tight"><strong class="text-[#0F172A] font-semibold block mb-0.5">Citizen ID Encrypted</strong>Protected under Privacy Law</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-white border border-[#E2EAF4] flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-lg">notifications_active</span>
+        </div>
+        <p class="text-[11px] text-[#64748B] leading-tight"><strong class="text-[#0F172A] font-semibold block mb-0.5">Real-Time Alerts</strong>SMS & WhatsApp Updates</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-white border border-[#E2EAF4] flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-lg">verified</span>
+        </div>
+        <p class="text-[11px] text-[#64748B] leading-tight"><strong class="text-[#0F172A] font-semibold block mb-0.5">Official Public Works</strong>Direct dispatch routing</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Complete Standard Footer -->
+  <footer class="border-t border-[#E2EAF4] bg-white py-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#64748B]">
+      <div>&copy; 2025 Regional Government Infrastructure Authority. KalsadaWatch – Public Roadway Oversight & Accountability System. All Rights Reserved.</div>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Privacy Policy</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Terms of Service</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Public Information Disclosure</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Reporting Guidelines</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Emergency Hotline</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+@code {
+    private string fullName = "";
+    private string citizenId = "";
+    private string email = "";
+    private string phoneNumber = "";
+    private string selectedDistrict = "";
+    private string password = "";
+    private string confirmPassword = "";
+    private bool agreedToTerms = false;
+
+    private void HandleRegistration()
+    {
+        // Add database insert / registration logic here
+    }
+}
