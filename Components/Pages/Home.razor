@@ -1,18 +1,18 @@
-﻿@page "/"
+@page "/"
 @rendermode InteractiveServer
 
 <PageTitle>KalsadaWatch - Public Infrastructure Monitoring</PageTitle>
 
-<div class="min-h-screen font-sans bg-civic-bg text-civic-body antialiased flex flex-col scroll-smooth">
+<div class="min-h-screen font-sans bg-civic-bg text-civic-body antialiased flex flex-col scroll-smooth page-transition">
   <!-- Navigation Bar with Animated Indicator -->
-  <header class="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-civic-border">
+  <header class="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-civic-border transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-      <a href="" @onclick='() => SetActiveTab("home")' class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-civic-light text-civic-primary flex items-center justify-center">
+      <a href="/?tab=home#top" @onclick='() => SetActiveTab("home")' class="flex items-center gap-3 group active:scale-95 transition-transform duration-200 cursor-pointer">
+        <div class="w-10 h-10 rounded-xl bg-civic-light text-civic-primary flex items-center justify-center group-hover:bg-civic-primary group-hover:text-white transition-all duration-300 shadow-sm">
           <span class="material-symbols-outlined text-2xl">account_balance</span>
         </div>
         <div>
-          <span class="text-xl font-bold tracking-tight text-civic-primary">KalsadaWatch</span>
+          <span class="text-xl font-bold tracking-tight text-civic-primary group-hover:text-civic-dark transition-colors">KalsadaWatch</span>
           <span class="block text-xs text-civic-muted -mt-0.5">Public Infrastructure Monitoring</span>
         </div>
       </a>
@@ -21,65 +21,65 @@
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
         
         <!-- Home Tab -->
-        <a href="" 
+        <a href="#top" 
            @onclick='() => SetActiveTab("home")'
-           class="relative pb-2 transition-colors duration-200 @(activeTab == "home" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "home" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
           Home
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "home" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "home" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
         <!-- Report Road Tab -->
         <a href="report" 
            @onclick='() => SetActiveTab("report")'
-           class="relative pb-2 transition-colors duration-200 @(activeTab == "report" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "report" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
           Report Road
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "report" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "report" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
         <!-- How It Works Tab -->
         <a href="#workflow" 
            @onclick='() => SetActiveTab("workflow")'
-           class="relative pb-2 transition-colors duration-200 @(activeTab == "workflow" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "workflow" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
           How It Works
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "workflow" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "workflow" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
         <!-- Road Damage Map Tab -->
         <a href="#map" 
            @onclick='() => SetActiveTab("map")'
-           class="relative pb-2 transition-colors duration-200 @(activeTab == "map" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "map" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
           Road Damage Map
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "map" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "map" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
         <!-- Statistics Tab -->
         <a href="#stats" 
            @onclick='() => SetActiveTab("stats")'
-           class="relative pb-2 transition-colors duration-200 @(activeTab == "stats" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "stats" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
           Statistics
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "stats" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "stats" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
         <!-- Help / Support Tab -->
         <a href="#emergency" 
            @onclick='() => SetActiveTab("emergency")'
-           class="relative pb-2 transition-colors duration-200 @(activeTab == "emergency" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "emergency" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
           Help / Support
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "emergency" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "emergency" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
       </nav>
 
       <!-- Routing Buttons -->
       <div class="flex items-center gap-3">
-        <a href="signin" class="text-sm font-semibold text-civic-primary px-4 py-2 hover:bg-civic-light/50 rounded-full transition-colors">Sign In</a>
-        <a href="register" class="text-sm font-semibold text-white bg-civic-primary hover:bg-civic-dark px-5 py-2.5 rounded-full shadow-sm transition-colors">Register</a>
+        <a href="signin" class="text-sm font-semibold text-civic-primary px-4 py-2 hover:bg-civic-light/60 active:scale-95 rounded-full transition-all duration-200 cursor-pointer">Sign In</a>
+        <a href="register" class="text-sm font-semibold text-white bg-civic-primary hover:bg-civic-dark active:scale-95 hover:shadow-md hover:-translate-y-0.5 px-5 py-2.5 rounded-full shadow-sm transition-all duration-200 cursor-pointer inline-flex items-center gap-1">Register</a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="relative pt-16 pb-20 overflow-hidden bg-gradient-to-br from-[#D6E8FF]/60 via-[#F0F6FF] to-white">
+  <section id="top" class="relative pt-16 pb-20 overflow-hidden bg-gradient-to-br from-[#D6E8FF]/60 via-[#F0F6FF] to-white scroll-mt-20">
     <div class="max-w-7xl mx-auto px-6 lg:px-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         <div class="lg:col-span-7 pt-4">
@@ -310,31 +310,25 @@
       </div>
     </div>
   </section>
-
-  <!-- Complete Standard Footer -->
-  <footer class="mt-auto border-t border-civic-border bg-white py-12">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div>
-        <div class="flex items-center gap-2 text-civic-primary font-bold text-lg mb-1">
-          <span class="material-symbols-outlined">account_balance</span> KalsadaWatch
-        </div>
-        <p class="text-xs text-civic-muted">&copy; 2026 KalsadaWatch Public Infrastructure Oversight System. All Rights Reserved.</p>
-      </div>
-      <div class="flex flex-wrap gap-5 text-xs text-civic-muted">
-        <a href="#" class="hover:text-civic-primary hover:underline">Privacy Policy</a>
-        <a href="#" class="hover:text-civic-primary hover:underline">Terms of Service</a>
-        <a href="#" class="hover:text-civic-primary hover:underline">Emergency Hotline</a>
-      </div>
-    </div>
-  </footer>
 </div>
 
 @code {
+    [SupplyParameterFromQuery(Name = "tab")]
+    public string? TabQuery { get; set; }
+
     private int reportsCount = 14820;
     private double resolutionRate = 92.4;
     private int avgResponseHours = 36;
     private int districtsCovered = 28;
     private string activeTab = "home";
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrWhiteSpace(TabQuery))
+        {
+            activeTab = TabQuery.ToLowerInvariant();
+        }
+    }
 
     private void SetActiveTab(string tabName)
     {
