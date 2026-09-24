@@ -23,44 +23,44 @@
         
         <!-- Home Tab -->
         <a href="/?tab=home#top" 
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "home" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
           Home
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "home" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
         </a>
 
-        <!-- Report Road Tab -->
+        <!-- Report Road Tab (ACTIVE) -->
         <a href="report" 
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "report" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-primary font-semibold">
           Report Road
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "report" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]"></span>
         </a>
 
         <!-- How It Works Tab -->
         <a href="/?tab=workflow#workflow" 
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "workflow" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
           How It Works
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "workflow" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
         </a>
 
         <!-- Road Damage Map Tab -->
-        <a href="/?tab=map#map" 
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "map" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+        <a href="verify" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
           Road Damage Map
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "map" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
         </a>
 
         <!-- Statistics Tab -->
         <a href="/?tab=stats#stats" 
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "stats" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
           Statistics
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "stats" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
         </a>
 
         <!-- Help / Support Tab -->
         <a href="/?tab=emergency#emergency" 
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "emergency" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
           Help / Support
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "emergency" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
         </a>
 
       </nav>
@@ -98,13 +98,14 @@
           </div>
         </div>
 
-        <!-- Hazard Type & Severity -->
+        <!-- Hazard Type & Severity (Clean with NO default pre-selected data) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-semibold text-civic-title mb-1.5">Hazard Type <span class="text-red-500">*</span></label>
             <div class="relative">
               <select class="w-full px-4 py-2.5 rounded-xl border border-civic-border text-sm text-civic-title focus:outline-none focus:border-civic-primary focus:ring-2 focus:ring-civic-primary/15 appearance-none bg-white cursor-pointer" required>
-                <option selected>Deep Pothole</option>
+                <option value="" disabled selected>Select hazard type</option>
+                <option>Deep Pothole</option>
                 <option>Alligator / Surface Cracks</option>
                 <option>Drain / Manhole Collapse</option>
                 <option>Road Shoulder Cavity</option>
@@ -117,7 +118,8 @@
             <label class="block text-xs font-semibold text-civic-title mb-1.5">Severity Rating <span class="text-red-500">*</span></label>
             <div class="relative">
               <select class="w-full px-4 py-2.5 rounded-xl border border-civic-border text-sm text-civic-title focus:outline-none focus:border-civic-primary focus:ring-2 focus:ring-civic-primary/15 appearance-none bg-white cursor-pointer" required>
-                <option selected>High Priority (Deep cavity, vehicle risk)</option>
+                <option value="" disabled selected>Select severity level</option>
+                <option>High Priority (Deep cavity, vehicle risk)</option>
                 <option>Medium Priority (Standard road erosion)</option>
                 <option>Low Priority (Early surface degradation)</option>
               </select>
@@ -167,7 +169,7 @@
         </button>
 
         <p class="text-xs text-center text-civic-muted pt-2">
-          Need to check existing reports? <a href="/#map" class="font-semibold text-civic-primary hover:underline">View live damage feed</a>
+          Need to verify road statuses? <a href="verify" class="font-semibold text-civic-primary hover:underline">View live damage & heat map</a>
         </p>
       </form>
     </div>
@@ -200,9 +202,4 @@
 
 @code {
     private string activeTab = "report";
-
-    private void SetActiveTab(string tabName)
-    {
-        activeTab = tabName;
-    }
 }

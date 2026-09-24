@@ -1,0 +1,876 @@
+@page "/verify"
+@page "/map"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+
+<PageTitle>KalsadaWatch - Road Status Verification & Damage Heat Map</PageTitle>
+
+<div class="min-h-screen font-sans bg-civic-bg text-civic-body antialiased flex flex-col scroll-smooth page-transition">
+  <!-- Navigation Bar with Animated Indicator -->
+  <header class="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-civic-border transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+      <a href="/?tab=home#top" class="flex items-center gap-3 group active:scale-95 transition-transform duration-200 cursor-pointer">
+        <div class="w-10 h-10 rounded-xl bg-civic-light text-civic-primary flex items-center justify-center group-hover:bg-civic-primary group-hover:text-white transition-all duration-300 shadow-sm">
+          <span class="material-symbols-outlined text-2xl">account_balance</span>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight text-civic-primary group-hover:text-civic-dark transition-colors">KalsadaWatch</span>
+          <span class="block text-xs text-civic-muted -mt-0.5">Public Infrastructure Monitoring</span>
+        </div>
+      </a>
+
+      <!-- Functional In-Page Nav Links with Animated Active Indicator -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        
+        <!-- Home Tab -->
+        <a href="/?tab=home#top" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          Home
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- Report Road Tab -->
+        <a href="report" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          Report Road
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- How It Works Tab -->
+        <a href="/?tab=workflow#workflow" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          How It Works
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- Road Damage Map Tab (ACTIVE) -->
+        <a href="verify" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-primary font-semibold">
+          Road Damage Map
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]"></span>
+        </a>
+
+        <!-- Statistics Tab -->
+        <a href="/?tab=stats#stats" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          Statistics
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- Help / Support Tab -->
+        <a href="/?tab=emergency#emergency" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          Help / Support
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+      </nav>
+
+      <!-- Routing Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="signin" class="text-sm font-semibold text-civic-primary px-4 py-2 hover:bg-civic-light/60 active:scale-95 rounded-full transition-all duration-200 cursor-pointer">Sign In</a>
+        <a href="register" class="text-sm font-semibold text-white bg-civic-primary hover:bg-civic-dark active:scale-95 hover:shadow-md hover:-translate-y-0.5 px-5 py-2.5 rounded-full shadow-sm transition-all duration-200 cursor-pointer inline-flex items-center gap-1">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Body -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-10 py-8">
+    
+    <!-- Top Hero Header & Public Works Counters -->
+    <div class="mb-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-civic-border">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-civic-light text-civic-primary text-xs font-semibold mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Public Works Transparency Hub
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-civic-title tracking-tight">
+            Road Status Verification & Hazard Heat Map
+          </h1>
+          <p class="text-sm sm:text-base text-civic-muted mt-2 max-w-2xl leading-relaxed">
+            Verify whether reported municipal roadway hazards are currently under construction, completed by asphalt crews, or queued for engineering inspection.
+          </p>
+        </div>
+
+        <!-- Live Status Metrics Badges -->
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-amber-50 border border-amber-200 shadow-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+            <div>
+              <div class="text-xs text-amber-700 font-medium">Under Construction</div>
+              <div class="text-lg font-bold text-amber-900 leading-tight">@underConstructionCount Zones</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <div>
+              <div class="text-xs text-emerald-700 font-medium">Finished & Repaired</div>
+              <div class="text-lg font-bold text-emerald-900 leading-tight">@finishedCount Roads</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-blue-50 border border-blue-200 shadow-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+            <div>
+              <div class="text-xs text-blue-700 font-medium">Under Inspection</div>
+              <div class="text-lg font-bold text-blue-900 leading-tight">@underInspectionCount Queued</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Filters & Map View Controls -->
+      <div class="mt-6 flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+        
+        <!-- Search Input -->
+        <div class="relative flex-1 max-w-md">
+          <span class="material-symbols-outlined absolute left-3.5 top-3 text-slate-400 text-lg">search</span>
+          <input type="text" 
+                 @bind="searchQuery" 
+                 @bind:event="oninput" 
+                 placeholder="Search by road name, landmark, or ID..." 
+                 class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-civic-border bg-white text-sm text-civic-title placeholder:text-slate-400 focus:outline-none focus:border-civic-primary focus:ring-2 focus:ring-civic-primary/15 transition-all shadow-sm" />
+          @if (!string.IsNullOrEmpty(searchQuery))
+          {
+            <button @onclick='() => searchQuery = ""' class="material-symbols-outlined absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 text-lg">
+              close
+            </button>
+          }
+        </div>
+
+        <!-- Filter Pill Group: Status -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button @onclick='() => SetStatusFilter("All")' 
+                  class="px-4 py-2 rounded-xl text-xs font-semibold transition-all @(selectedStatus == "All" ? "bg-civic-primary text-white shadow-sm" : "bg-white border border-civic-border text-civic-muted hover:text-civic-title hover:border-civic-primary/40")">
+            All Statuses (@allReports.Count)
+          </button>
+          <button @onclick='() => SetStatusFilter("Under Construction")' 
+                  class="px-4 py-2 rounded-xl text-xs font-semibold transition-all @(selectedStatus == "Under Construction" ? "bg-amber-500 text-white shadow-sm" : "bg-white border border-civic-border text-amber-700 hover:bg-amber-50")">
+            🟡 Under Construction (@underConstructionCount)
+          </button>
+          <button @onclick='() => SetStatusFilter("Finished")' 
+                  class="px-4 py-2 rounded-xl text-xs font-semibold transition-all @(selectedStatus == "Finished" ? "bg-emerald-600 text-white shadow-sm" : "bg-white border border-civic-border text-emerald-700 hover:bg-emerald-50")">
+            🟢 Finished (@finishedCount)
+          </button>
+          <button @onclick='() => SetStatusFilter("Under Inspection")' 
+                  class="px-4 py-2 rounded-xl text-xs font-semibold transition-all @(selectedStatus == "Under Inspection" ? "bg-blue-600 text-white shadow-sm" : "bg-white border border-civic-border text-blue-700 hover:bg-blue-50")">
+            🔵 Inspection (@underInspectionCount)
+          </button>
+        </div>
+
+        <!-- Secondary Controls: District & Sort -->
+        <div class="flex items-center gap-3">
+          <!-- District Dropdown -->
+          <div class="relative">
+            <select @bind="selectedDistrict" class="px-3.5 pr-8 py-2 rounded-xl bg-white border border-civic-border text-xs font-semibold text-civic-title focus:outline-none focus:border-civic-primary focus:ring-2 focus:ring-civic-primary/15 appearance-none cursor-pointer shadow-sm">
+              <option value="All">All Districts</option>
+              <option value="Central District">Central District</option>
+              <option value="North District">North District</option>
+              <option value="South Urban Corridor">South Corridor</option>
+              <option value="East Industrial Zone">East Industrial</option>
+              <option value="West Municipal Area">West Municipal</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-2.5 top-2 text-slate-400 text-base pointer-events-none">expand_more</span>
+          </div>
+
+          <!-- Sort Dropdown (Near area / Recently added) -->
+          <div class="relative">
+            <select @bind="selectedSort" class="px-3.5 pr-8 py-2 rounded-xl bg-white border border-civic-border text-xs font-semibold text-civic-title focus:outline-none focus:border-civic-primary focus:ring-2 focus:ring-civic-primary/15 appearance-none cursor-pointer shadow-sm">
+              <option value="recent">⚡ Recently Added</option>
+              <option value="near">📍 Near City Center</option>
+              <option value="priority">🚨 Highest Priority</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-2.5 top-2 text-slate-400 text-base pointer-events-none">expand_more</span>
+          </div>
+
+          <!-- Heatmap Layer Toggle -->
+          <button @onclick="ToggleHeatmap" 
+                  class="px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all @(isHeatmapActive ? "bg-rose-500 text-white shadow-sm" : "bg-white border border-civic-border text-civic-title hover:bg-slate-50")"
+                  title="Toggle Heat Map visualization showing high concentration of road damage">
+            <span class="material-symbols-outlined text-sm">local_fire_department</span>
+            <span>@(isHeatmapActive ? "Heat Map Active" : "Heat Map")</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Main Grid: Interactive Map (Left/Top) & Filtered Report Cards (Right/Bottom) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Interactive Map Column (7 cols) -->
+      <div class="lg:col-span-7 space-y-4">
+        <div class="bg-white p-4 rounded-3xl border border-civic-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+          
+          <!-- Map Top Floating Status Strip -->
+          <div class="flex items-center justify-between mb-3 px-1">
+            <div class="flex items-center gap-2 text-xs font-bold text-civic-title">
+              <span class="material-symbols-outlined text-civic-primary text-base">map</span>
+              <span>Civic Infrastructure GIS Map</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-civic-muted bg-slate-100 px-2.5 py-1 rounded-full">
+                Interactive Pan & Zoom Enabled
+              </span>
+              <button @onclick="ResetMapView" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-civic-light text-civic-primary hover:bg-blue-200 transition-colors">
+                Center Map
+              </button>
+            </div>
+          </div>
+
+          <!-- Leaflet Map Container -->
+          <div id="verificationMap" class="w-full h-[540px] rounded-2xl overflow-hidden border border-slate-200 z-10"></div>
+
+          <!-- Map Legend Bar Below -->
+          <div class="mt-3.5 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[11px] text-civic-muted px-1">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex items-center gap-1.5 font-medium">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Under Construction
+              </span>
+              <span class="inline-flex items-center gap-1.5 font-medium">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Finished & Paved
+              </span>
+              <span class="inline-flex items-center gap-1.5 font-medium">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> Under Inspection
+              </span>
+              @if (isHeatmapActive)
+              {
+                <span class="inline-flex items-center gap-1.5 font-medium text-rose-600 font-semibold">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span> Thermal Hazard Clusters
+                </span>
+              }
+            </div>
+            <span class="text-[11px] text-slate-400">Click any pin or card to inspect verification</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Reports List Column (5 cols) -->
+      <div class="lg:col-span-5 space-y-4">
+        
+        <!-- List Header Bar -->
+        <div class="flex items-center justify-between px-1">
+          <h2 class="text-sm font-bold text-civic-title flex items-center gap-2">
+            <span class="material-symbols-outlined text-base text-civic-primary">format_list_bulleted</span>
+            <span>Reported Road Statuses</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-civic-light text-civic-primary font-bold">@FilteredReports.Count</span>
+          </h2>
+          <span class="text-xs text-civic-muted">Showing filtered public works dispatches</span>
+        </div>
+
+        <!-- Scrollable Report Cards List -->
+        <div class="space-y-3.5 max-h-[600px] overflow-y-auto pr-1">
+          @if (FilteredReports.Count == 0)
+          {
+            <div class="bg-white rounded-2xl border border-civic-border p-12 text-center">
+              <div class="w-12 h-12 rounded-full bg-civic-light text-civic-primary flex items-center justify-center mx-auto mb-3">
+                <span class="material-symbols-outlined text-2xl">search_off</span>
+              </div>
+              <h3 class="text-sm font-bold text-civic-title">No Road Hazard Reports Found</h3>
+              <p class="text-xs text-civic-muted mt-1 max-w-xs mx-auto">
+                No reports matched your current filter criteria. Try resetting the status or district filter.
+              </p>
+              <button @onclick="ResetAllFilters" class="mt-4 px-4 py-2 rounded-xl text-xs font-semibold bg-civic-primary text-white hover:bg-civic-dark transition-colors">
+                Reset All Filters
+              </button>
+            </div>
+          }
+          else
+          {
+            @foreach (var report in FilteredReports)
+            {
+              <div class="p-5 bg-white rounded-2xl border transition-all duration-200 @(selectedReport?.Id == report.Id ? "border-civic-primary ring-2 ring-civic-primary/20 shadow-md" : "border-civic-border hover:border-civic-primary/40 shadow-sm")">
+                
+                <!-- Card Header: Status Badge & ID -->
+                <div class="flex items-center justify-between mb-2.5">
+                  @if (report.Status == "Under Construction")
+                  {
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                      <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> Under Construction (@report.ProgressPercent%)
+                    </span>
+                  }
+                  else if (report.Status == "Finished")
+                  {
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                      <span class="material-symbols-outlined text-xs">verified</span> Finished & Repaired (100%)
+                    </span>
+                  }
+                  else
+                  {
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">
+                      <span class="w-2 h-2 rounded-full bg-blue-500"></span> Under Engineering Review
+                    </span>
+                  }
+
+                  <span class="text-xs font-mono font-bold text-civic-muted bg-slate-100 px-2 py-0.5 rounded">
+                    #@report.Id
+                  </span>
+                </div>
+
+                <!-- Title & Location -->
+                <h3 class="text-sm font-bold text-civic-title leading-snug">@report.Title</h3>
+                <div class="flex items-center gap-1 text-xs text-civic-muted mt-1">
+                  <span class="material-symbols-outlined text-sm text-slate-400">location_on</span>
+                  <span>@report.Location</span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mt-3.5 space-y-1">
+                  <div class="flex items-center justify-between text-[11px]">
+                    <span class="text-civic-muted font-medium">Asphalt Repair Progress</span>
+                    <span class="font-bold @(report.Status == "Finished" ? "text-emerald-600" : report.Status == "Under Construction" ? "text-amber-600" : "text-blue-600")">
+                      @report.ProgressPercent%
+                    </span>
+                  </div>
+                  <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500 @(report.Status == "Finished" ? "bg-emerald-500" : report.Status == "Under Construction" ? "bg-amber-500" : "bg-blue-500")"
+                         style="width: @(report.ProgressPercent)%"></div>
+                  </div>
+                </div>
+
+                <!-- Meta Footer: Crew & Actions -->
+                <div class="flex items-center justify-between pt-3 mt-3 border-t border-slate-100 text-xs">
+                  <div class="text-[11px] text-civic-muted">
+                    <span class="block font-medium text-slate-700">@report.AssignedCrew</span>
+                    <span>@report.District &bull; @report.DateReported</span>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    <button @onclick="() => FocusMapOnReport(report)" 
+                            class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-civic-light text-civic-primary hover:bg-blue-200 transition-colors flex items-center gap-1">
+                      <span class="material-symbols-outlined text-xs">my_location</span>
+                      <span>Map</span>
+                    </button>
+                    <button @onclick="() => OpenAuditModal(report)" 
+                            class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-civic-title hover:bg-slate-200 transition-colors flex items-center gap-1">
+                      <span class="material-symbols-outlined text-xs">verified_user</span>
+                      <span>Verify</span>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            }
+          }
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Interactive Public Works Verification Audit Modal -->
+  @if (isModalOpen && selectedReport != null)
+  {
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in" @onclick="CloseAuditModal">
+      <div class="bg-white rounded-3xl border border-civic-border max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6 relative" @onclick:stopPropagation>
+        
+        <!-- Modal Close Button -->
+        <button @onclick="CloseAuditModal" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+
+        <!-- Top Certificate Badge -->
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mb-2">
+            <span class="material-symbols-outlined text-sm">verified</span> Official Municipal Public Works Audit
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-civic-title">@selectedReport.Title</h2>
+          <p class="text-xs text-civic-muted mt-1 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">pin_drop</span> @selectedReport.Location &bull; @selectedReport.District
+          </p>
+        </div>
+
+        <!-- Status & Timeline Box -->
+        <div class="p-4 rounded-2xl bg-civic-bg border border-civic-border space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-civic-muted">Current Civic Status</span>
+            <span class="font-bold @(selectedReport.Status == "Finished" ? "text-emerald-700" : selectedReport.Status == "Under Construction" ? "text-amber-700" : "text-blue-700")">
+              @selectedReport.Status (@selectedReport.ProgressPercent%)
+            </span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-slate-200 overflow-hidden">
+            <div class="h-full rounded-full @(selectedReport.Status == "Finished" ? "bg-emerald-500" : selectedReport.Status == "Under Construction" ? "bg-amber-500" : "bg-blue-500")"
+                 style="width: @(selectedReport.ProgressPercent)%"></div>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-civic-muted pt-1">
+            <span>Reported: @selectedReport.DateReported</span>
+            <span>@(selectedReport.Status == "Finished" ? $"Completed: {selectedReport.CompletionDate}" : $"Target: {selectedReport.CompletionDate}")</span>
+          </div>
+        </div>
+
+        <!-- Technical Field Inspection Specifications -->
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="block text-[11px] text-civic-muted mb-0.5">Assigned Engineering Crew</span>
+            <strong class="text-civic-title font-semibold">@selectedReport.AssignedCrew</strong>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="block text-[11px] text-civic-muted mb-0.5">Hazard Severity Rating</span>
+            <strong class="text-civic-title font-semibold">@selectedReport.Severity Priority</strong>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="block text-[11px] text-civic-muted mb-0.5">Citizen Confirmations</span>
+            <strong class="text-emerald-700 font-semibold">@selectedReport.CitizenVerifications Citizens Verified</strong>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="block text-[11px] text-civic-muted mb-0.5">Ticket Reference ID</span>
+            <strong class="font-mono text-civic-primary font-bold">#@selectedReport.Id</strong>
+          </div>
+        </div>
+
+        <!-- Field Engineer Notes -->
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+          <span class="block font-bold text-civic-title mb-1">Public Works Inspection Notes:</span>
+          <p class="text-civic-muted leading-relaxed">
+            @selectedReport.Notes
+          </p>
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="flex items-center gap-3 pt-2">
+          <button @onclick="() => FocusMapFromModal(selectedReport)" class="flex-1 h-11 rounded-full bg-civic-primary hover:bg-civic-dark text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm">
+            <span class="material-symbols-outlined text-sm">my_location</span> Center on Interactive Map
+          </button>
+          <button @onclick="CloseAuditModal" class="px-5 h-11 rounded-full border border-slate-200 text-civic-muted hover:text-civic-title font-semibold text-xs transition-colors">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>
+
+@code {
+    private string selectedStatus = "All";
+    private string selectedDistrict = "All";
+    private string selectedSort = "recent";
+    private string searchQuery = "";
+    private bool isHeatmapActive = false;
+    private bool isModalOpen = false;
+    private RoadReport? selectedReport;
+
+    private class RoadReport
+    {
+        public string Id { get; set; } = "";
+        public string Title { get; set; } = "";
+        public string Location { get; set; } = "";
+        public string District { get; set; } = "";
+        public string HazardType { get; set; } = "";
+        public string Severity { get; set; } = "";
+        public string Status { get; set; } = ""; // "Under Construction", "Finished", "Under Inspection"
+        public int ProgressPercent { get; set; }
+        public string AssignedCrew { get; set; } = "";
+        public string DateReported { get; set; } = "";
+        public string CompletionDate { get; set; } = "";
+        public int CitizenVerifications { get; set; }
+        public double Lat { get; set; }
+        public double Lng { get; set; }
+        public double DistanceFromCenterKm { get; set; }
+        public string Notes { get; set; } = "";
+    }
+
+    private List<RoadReport> allReports = new()
+    {
+        new RoadReport
+        {
+            Id = "KW-8921",
+            Title = "Deep Pothole (12-inch Cavity)",
+            Location = "18 Market Street / Central Blvd",
+            District = "Central District",
+            HazardType = "Deep Pothole",
+            Severity = "High",
+            Status = "Under Construction",
+            ProgressPercent = 65,
+            AssignedCrew = "Rapid Asphalt Unit 02",
+            DateReported = "2 hours ago",
+            CompletionDate = "Today 5:00 PM",
+            CitizenVerifications = 42,
+            Lat = 14.5995,
+            Lng = 120.9842,
+            DistanceFromCenterKm = 0.4,
+            Notes = "Sub-base graded and asphalt hotmix compaction in progress. Lane divider cones deployed for commuter safety."
+        },
+        new RoadReport
+        {
+            Id = "KW-8910",
+            Title = "Hotmix Patching & Resurfacing Completed",
+            Location = "South Expressway Service Road",
+            District = "South Urban Corridor",
+            HazardType = "Asphalt Degradation",
+            Severity = "Medium",
+            Status = "Finished",
+            ProgressPercent = 100,
+            AssignedCrew = "Arterial Road Division Unit 01",
+            DateReported = "Yesterday",
+            CompletionDate = "Today 1:15 PM",
+            CitizenVerifications = 89,
+            Lat = 14.5820,
+            Lng = 120.9950,
+            DistanceFromCenterKm = 2.1,
+            Notes = "Complete 40-meter resurfacing completed. Passed quality grade density test. Official DPWH audit completed and approved."
+        },
+        new RoadReport
+        {
+            Id = "KW-8924",
+            Title = "Alligator Cracking & Road Cavity",
+            Location = "45 Northway Highway near Overpass",
+            District = "North District",
+            HazardType = "Alligator Cracks",
+            Severity = "High",
+            Status = "Under Construction",
+            ProgressPercent = 40,
+            AssignedCrew = "Heavy Paving Battalion 03",
+            DateReported = "5 hours ago",
+            CompletionDate = "Tomorrow 10:00 AM",
+            CitizenVerifications = 63,
+            Lat = 14.6150,
+            Lng = 120.9890,
+            DistanceFromCenterKm = 1.8,
+            Notes = "Crack milling complete. Base reinforcement gravel applied. Waiting for hotmix delivery convoy."
+        },
+        new RoadReport
+        {
+            Id = "KW-8930",
+            Title = "Collapsed Manhole & Shoulder Cavity",
+            Location = "Corner Industrial Ave & 8th St",
+            District = "East Industrial Zone",
+            HazardType = "Manhole Collapse",
+            Severity = "High",
+            Status = "Under Inspection",
+            ProgressPercent = 15,
+            AssignedCrew = "Drainage & Sewerage Engineering",
+            DateReported = "30 mins ago",
+            CompletionDate = "Inspection in Progress",
+            CitizenVerifications = 21,
+            Lat = 14.5930,
+            Lng = 121.0180,
+            DistanceFromCenterKm = 3.6,
+            Notes = "Site secured with barricades. Drainage structural engineer en route to verify underground culvert integrity."
+        },
+        new RoadReport
+        {
+            Id = "KW-8902",
+            Title = "Pedestrian Crossing Pavement Resurfaced",
+            Location = "Rizal Avenue in front of Civic Center",
+            District = "Central District",
+            HazardType = "Surface Erosion",
+            Severity = "Low",
+            Status = "Finished",
+            ProgressPercent = 100,
+            AssignedCrew = "Central Maintenance Division",
+            DateReported = "3 days ago",
+            CompletionDate = "Yesterday 4:00 PM",
+            CitizenVerifications = 112,
+            Lat = 14.6040,
+            Lng = 120.9820,
+            DistanceFromCenterKm = 0.6,
+            Notes = "Full road smoothing and thermal plastic reflective pedestrian stripes repainted. Fully open to vehicular traffic."
+        },
+        new RoadReport
+        {
+            Id = "KW-8935",
+            Title = "Severe Road Shoulder Depression",
+            Location = "West Coastal Access Road km 12",
+            District = "West Municipal Area",
+            HazardType = "Shoulder Cavity",
+            Severity = "Medium",
+            Status = "Under Inspection",
+            ProgressPercent = 20,
+            AssignedCrew = "District Engineering Survey Team",
+            DateReported = "1 hour ago",
+            CompletionDate = "Scheduled Today 3:00 PM",
+            CitizenVerifications = 17,
+            Lat = 14.5880,
+            Lng = 120.9680,
+            DistanceFromCenterKm = 2.8,
+            Notes = "Road shoulder depression logged by patrol unit. Soil compaction inspection scheduled before patching."
+        },
+        new RoadReport
+        {
+            Id = "KW-8898",
+            Title = "Deep Stormwater Pothole Repaired",
+            Location = "Quezon Blvd Intersection",
+            District = "North District",
+            HazardType = "Deep Pothole",
+            Severity = "High",
+            Status = "Finished",
+            ProgressPercent = 100,
+            AssignedCrew = "Rapid Asphalt Unit 01",
+            DateReported = "2 days ago",
+            CompletionDate = "Yesterday 11:30 AM",
+            CitizenVerifications = 76,
+            Lat = 14.6100,
+            Lng = 120.9850,
+            DistanceFromCenterKm = 1.2,
+            Notes = "Cavity filled with rapid-setting asphalt concrete. Water barrier drainage test passed."
+        }
+    };
+
+    private int underConstructionCount => allReports.Count(r => r.Status == "Under Construction");
+    private int finishedCount => allReports.Count(r => r.Status == "Finished");
+    private int underInspectionCount => allReports.Count(r => r.Status == "Under Inspection");
+
+    private List<RoadReport> FilteredReports
+    {
+        get
+        {
+            var query = allReports.AsEnumerable();
+
+            if (selectedStatus != "All")
+            {
+                query = query.Where(r => r.Status == selectedStatus);
+            }
+
+            if (selectedDistrict != "All")
+            {
+                query = query.Where(r => r.District == selectedDistrict);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                var q = searchQuery.Trim().ToLowerInvariant();
+                query = query.Where(r => r.Title.ToLowerInvariant().Contains(q) ||
+                                         r.Location.ToLowerInvariant().Contains(q) ||
+                                         r.Id.ToLowerInvariant().Contains(q) ||
+                                         r.HazardType.ToLowerInvariant().Contains(q));
+            }
+
+            query = selectedSort switch
+            {
+                "near" => query.OrderBy(r => r.DistanceFromCenterKm),
+                "priority" => query.OrderByDescending(r => r.Severity == "High").ThenByDescending(r => r.Severity == "Medium"),
+                _ => query.OrderBy(r => r.Status == "Under Construction" ? 0 : r.Status == "Under Inspection" ? 1 : 2)
+            };
+
+            return query.ToList();
+        }
+    }
+
+    private void SetStatusFilter(string status)
+    {
+        selectedStatus = status;
+        UpdateMapLayers();
+    }
+
+    private void ToggleHeatmap()
+    {
+        isHeatmapActive = !isHeatmapActive;
+        UpdateMapLayers();
+    }
+
+    private void ResetAllFilters()
+    {
+        selectedStatus = "All";
+        selectedDistrict = "All";
+        selectedSort = "recent";
+        searchQuery = "";
+        UpdateMapLayers();
+    }
+
+    private void OpenAuditModal(RoadReport report)
+    {
+        selectedReport = report;
+        isModalOpen = true;
+    }
+
+    private void CloseAuditModal()
+    {
+        isModalOpen = false;
+    }
+
+    private async Task FocusMapFromModal(RoadReport report)
+    {
+        CloseAuditModal();
+        await FocusMapOnReport(report);
+    }
+
+    private async Task FocusMapOnReport(RoadReport report)
+    {
+        selectedReport = report;
+        await JSRuntime.InvokeVoidAsync("kalsadaMap.panToLocation", report.Lat, report.Lng, report.Title, report.Status, report.Id);
+    }
+
+    private async Task ResetMapView()
+    {
+        await JSRuntime.InvokeVoidAsync("kalsadaMap.resetView");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await InitializeMap();
+        }
+    }
+
+    private async Task InitializeMap()
+    {
+        var reportsJson = System.Text.Json.JsonSerializer.Serialize(allReports);
+        await JSRuntime.InvokeVoidAsync("kalsadaMap.init", "verificationMap", reportsJson);
+    }
+
+    private async void UpdateMapLayers()
+    {
+        var filteredJson = System.Text.Json.JsonSerializer.Serialize(FilteredReports);
+        await JSRuntime.InvokeVoidAsync("kalsadaMap.updateData", filteredJson, isHeatmapActive);
+        StateHasChanged();
+    }
+}
+
+<script>
+  window.kalsadaMap = {
+    mapInstance: null,
+    markersGroup: null,
+    heatmapGroup: null,
+
+    init: function (elementId, reportsJson) {
+      if (typeof L === 'undefined') {
+        setTimeout(() => window.kalsadaMap.init(elementId, reportsJson), 200);
+        return;
+      }
+
+      const container = document.getElementById(elementId);
+      if (!container) return;
+
+      if (window.kalsadaMap.mapInstance) {
+        window.kalsadaMap.mapInstance.remove();
+      }
+
+      // Initialize map centered on City Center (Manila coordinates)
+      const map = L.map(elementId, {
+        scrollWheelZoom: true,
+        zoomControl: true
+      }).setView([14.5995, 120.9842], 13);
+
+      window.kalsadaMap.mapInstance = map;
+
+      // Add modern clean CartoDB / OpenStreetMap tile layer
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>, OpenStreetMap',
+        maxZoom: 19
+      }).addTo(map);
+
+      window.kalsadaMap.markersGroup = L.layerGroup().addTo(map);
+      window.kalsadaMap.heatmapGroup = L.layerGroup().addTo(map);
+
+      const reports = JSON.parse(reportsJson);
+      window.kalsadaMap.renderMarkers(reports, false);
+    },
+
+    renderMarkers: function (reports, showHeatmap) {
+      if (!window.kalsadaMap.mapInstance) return;
+
+      window.kalsadaMap.markersGroup.clearLayers();
+      window.kalsadaMap.heatmapGroup.clearLayers();
+
+      reports.forEach(r => {
+        // Status color mapping
+        let color = '#2563EB'; // Blue (Inspection)
+        let label = 'Under Inspection';
+        if (r.Status === 'Under Construction') {
+          color = '#F59E0B'; // Amber
+          label = 'Under Construction';
+        } else if (r.Status === 'Finished') {
+          color = '#10B981'; // Emerald
+          label = 'Finished & Repaired';
+        }
+
+        // Custom SVG Pin Marker
+        const svgIcon = L.divIcon({
+          className: 'custom-map-pin',
+          html: `
+            <div style="
+              width: 32px;
+              height: 32px;
+              border-radius: 50% 50% 50% 0;
+              background: ${color};
+              transform: rotate(-45deg);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: 2.5px solid #FFFFFF;
+              box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+              cursor: pointer;
+              transition: transform 0.2s ease;
+            ">
+              <div style="
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #FFFFFF;
+              "></div>
+            </div>
+          `,
+          iconSize: [32, 32],
+          iconAnchor: [16, 32],
+          popupAnchor: [0, -32]
+        });
+
+        const marker = L.marker([r.Lat, r.Lng], { icon: svgIcon });
+        
+        // Rich Popup Window
+        const popupContent = `
+          <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 4px; min-width: 200px;">
+            <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: ${color}; margin-bottom: 2px;">
+              ● ${label} (${r.ProgressPercent}%)
+            </div>
+            <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 4px;">
+              ${r.Title}
+            </div>
+            <div style="font-size: 11px; color: #64748B; margin-bottom: 6px;">
+              📍 ${r.Location}
+            </div>
+            <div style="font-size: 11px; background: #F1F5F9; padding: 4px 8px; border-radius: 6px; color: #334155;">
+              Crew: <strong>${r.AssignedCrew}</strong>
+            </div>
+          </div>
+        `;
+
+        marker.bindPopup(popupContent);
+        window.kalsadaMap.markersGroup.addLayer(marker);
+
+        // Heatmap density visualization (radial pulsing gradient circles)
+        if (showHeatmap) {
+          const heatColor = (r.Status === 'Under Construction' || r.Severity === 'High') ? '#EF4444' : '#F59E0B';
+          const radius = (r.Severity === 'High') ? 450 : 320;
+          
+          const heatCircle = L.circle([r.Lat, r.Lng], {
+            radius: radius,
+            color: heatColor,
+            fillColor: heatColor,
+            fillOpacity: 0.28,
+            weight: 1.5,
+            dashArray: '4, 4'
+          });
+
+          window.kalsadaMap.heatmapGroup.addLayer(heatCircle);
+        }
+      });
+    },
+
+    updateData: function (filteredReportsJson, showHeatmap) {
+      if (!window.kalsadaMap.mapInstance) return;
+      const reports = JSON.parse(filteredReportsJson);
+      window.kalsadaMap.renderMarkers(reports, showHeatmap);
+    },
+
+    panToLocation: function (lat, lng, title, status, id) {
+      if (!window.kalsadaMap.mapInstance) return;
+      window.kalsadaMap.mapInstance.flyTo([lat, lng], 16, {
+        duration: 1.2,
+        easeLinearity: 0.25
+      });
+    },
+
+    resetView: function () {
+      if (!window.kalsadaMap.mapInstance) return;
+      window.kalsadaMap.mapInstance.flyTo([14.5995, 120.9842], 13, { duration: 1 });
+    }
+  };
+</script>
