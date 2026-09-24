@@ -1,0 +1,181 @@
+@page "/report"
+@rendermode InteractiveServer
+
+<PageTitle>KalsadaWatch - Report Road Hazard</PageTitle>
+
+<div class="min-h-screen font-sans bg-[#EEF4FF] text-[#1E293B] antialiased flex flex-col justify-between">
+  <!-- Full Universal Navigation Bar -->
+  <header class="w-full sticky top-0 z-50 bg-white border-b border-[#E2EAF4]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+      <!-- Left Logo -->
+      <a href="" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">account_balance</span>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight text-[#2563EB]">KalsadaWatch</span>
+          <span class="block text-xs text-[#64748B] -mt-0.5">Public Infrastructure Monitoring</span>
+        </div>
+      </a>
+
+      <!-- Center Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#64748B]">
+        <a href="" class="hover:text-[#2563EB] transition-colors">Home</a>
+        <!-- Active Underline for Report Road -->
+        <a href="report" class="relative text-sm font-semibold text-[#2563EB] pb-2">
+          Report Road
+          <span class="absolute bottom-0 left-0 w-full h-[2.5px] rounded-full bg-[#2563EB]"></span>
+        </a>
+        <a href="#map" class="hover:text-[#2563EB] transition-colors">Road Damage Map</a>
+        <a href="#stats" class="hover:text-[#2563EB] transition-colors">Statistics</a>
+        <a href="#help" class="hover:text-[#2563EB] transition-colors">Help / Support</a>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-6">
+        <a href="signin" class="text-sm font-semibold text-[#64748B] hover:text-[#2563EB] transition-colors">Sign In</a>
+        <a href="register" class="text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1E40AF] px-6 py-2.5 rounded-full shadow-sm transition-all duration-200">
+          Register
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Report Form Container -->
+  <main class="flex-1 max-w-2xl mx-auto w-full py-12 px-6">
+    <div class="bg-white rounded-3xl border border-[#E2EAF4] p-8 sm:p-10 shadow-[0_10px_30px_-10px_rgba(37,99,235,0.08)]">
+      
+      <!-- Top Pill & Title Header -->
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DBEAFE] text-[#2563EB] text-xs font-semibold mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#2563EB]"></span> Public Hazard Dispatch
+        </div>
+        <h1 class="text-2xl sm:text-[28px] font-bold text-[#0F172A] tracking-tight">Report Road Hazard</h1>
+        <p class="text-xs sm:text-sm text-[#64748B] mt-2 leading-relaxed">
+          Submit photo evidence and geotagged incident coordinates to dispatch rapid municipal asphalt repair teams.
+        </p>
+      </div>
+
+      <form class="space-y-5" onsubmit="return false;">
+        <!-- Location / Street -->
+        <div>
+          <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Hazard Location or Nearest Landmark <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-3 text-[#94A3B8] text-lg">location_on</span>
+            <input type="text" placeholder="e.g. Corner Main Ave & 4th Street, in front of City Hall" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15" required />
+          </div>
+        </div>
+
+        <!-- Hazard Type & Severity -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Hazard Type <span class="text-red-500">*</span></label>
+            <div class="relative">
+              <select class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 appearance-none bg-white cursor-pointer" required>
+                <option selected>Deep Pothole</option>
+                <option>Alligator / Surface Cracks</option>
+                <option>Drain / Manhole Collapse</option>
+                <option>Road Shoulder Cavity</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-2.5 text-[#94A3B8] text-lg pointer-events-none">expand_more</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Severity Rating <span class="text-red-500">*</span></label>
+            <div class="relative">
+              <select class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 appearance-none bg-white cursor-pointer" required>
+                <option selected>High Priority (Deep cavity, vehicle risk)</option>
+                <option>Medium Priority (Standard road erosion)</option>
+                <option>Low Priority (Early surface degradation)</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-2.5 text-[#94A3B8] text-lg pointer-events-none">expand_more</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- District Selection -->
+        <div>
+          <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">City District / Operational Area <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <select class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 appearance-none bg-white cursor-pointer" required>
+              <option value="" disabled selected>Select administrative district</option>
+              <option>Central District</option>
+              <option>North District</option>
+              <option>South District</option>
+              <option>East Industrial Zone</option>
+              <option>West Municipal Area</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-3 top-2.5 text-[#94A3B8] text-lg pointer-events-none">expand_more</span>
+          </div>
+        </div>
+
+        <!-- Photo Upload Box -->
+        <div>
+          <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Upload On-Site Photo Proof</label>
+          <div class="border-2 border-dashed border-[#E2EAF4] hover:border-[#2563EB]/50 rounded-2xl p-6 text-center transition-colors cursor-pointer bg-slate-50/50">
+            <div class="w-10 h-10 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center mx-auto mb-2">
+              <span class="material-symbols-outlined text-xl">photo_camera</span>
+            </div>
+            <p class="text-xs font-semibold text-[#0F172A]">Click to attach or drag roadway photo</p>
+            <p class="text-[11px] text-[#94A3B8] mt-1">JPEG, PNG files up to 10MB accepted</p>
+          </div>
+        </div>
+
+        <!-- Notes / Textarea -->
+        <div>
+          <label class="block text-xs font-semibold text-[#0F172A] mb-1.5">Hazard Observation Details</label>
+          <textarea rows="3" placeholder="Specify depth, lane blockage, water pooling, or specific hazards..." class="w-full px-4 py-2.5 rounded-xl border border-[#E2EAF4] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 resize-none"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full h-12 rounded-full bg-[#2563EB] hover:bg-[#1E40AF] text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow mt-2">
+          <span class="material-symbols-outlined text-base">send</span>
+          <span>Submit Road Hazard Report</span>
+        </button>
+
+        <p class="text-xs text-center text-[#64748B] pt-2">
+          Need to check existing reports? <a href="" class="font-semibold text-[#2563EB] hover:underline">View live damage feed</a>
+        </p>
+      </form>
+    </div>
+
+    <!-- 3 Matching Reassurance Badges -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-6">
+      <div class="p-4 rounded-2xl bg-white border border-[#E2EAF4] flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-lg">schedule</span>
+        </div>
+        <p class="text-[11px] text-[#64748B] leading-tight"><strong class="text-[#0F172A] font-semibold block mb-0.5">&lt; 48h Turnaround</strong>Field Inspection Guarantee</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-white border border-[#E2EAF4] flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-lg">notifications_active</span>
+        </div>
+        <p class="text-[11px] text-[#64748B] leading-tight"><strong class="text-[#0F172A] font-semibold block mb-0.5">Real-Time SMS Alerts</strong>Track Status Progression</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-white border border-[#E2EAF4] flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-lg">verified</span>
+        </div>
+        <p class="text-[11px] text-[#64748B] leading-tight"><strong class="text-[#0F172A] font-semibold block mb-0.5">Public Works Unit</strong>Direct Crew Dispatch</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Complete Standard Footer -->
+  <footer class="border-t border-[#E2EAF4] bg-white py-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#64748B]">
+      <div>&copy; 2025 Regional Government Infrastructure Authority. KalsadaWatch – Public Roadway Oversight & Accountability System. All Rights Reserved.</div>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Privacy Policy</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Terms of Service</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Public Information Disclosure</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Reporting Guidelines</a>
+        <a href="#" class="hover:text-[#2563EB] hover:underline">Emergency Hotline</a>
+      </div>
+    </div>
+  </footer>
+</div>

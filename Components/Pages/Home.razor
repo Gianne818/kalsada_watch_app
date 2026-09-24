@@ -4,7 +4,6 @@
 <PageTitle>KalsadaWatch - Public Infrastructure Monitoring</PageTitle>
 
 <div class="min-h-screen font-sans bg-civic-bg text-civic-body antialiased flex flex-col scroll-smooth">
-  <!-- Navigation Bar -->
   <!-- Navigation Bar with Animated Indicator -->
   <header class="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-civic-border">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
@@ -26,7 +25,15 @@
            @onclick='() => SetActiveTab("home")'
            class="relative pb-2 transition-colors duration-200 @(activeTab == "home" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
           Home
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "home" ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full")"></span>
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "home" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
+        </a>
+
+        <!-- Report Road Tab -->
+        <a href="report" 
+           @onclick='() => SetActiveTab("report")'
+           class="relative pb-2 transition-colors duration-200 @(activeTab == "report" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+          Report Road
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "report" ? "w-full opacity-100" : "w-0 opacity-0")"></span>
         </a>
 
         <!-- How It Works Tab -->
@@ -86,7 +93,7 @@
             A transparent civic oversight platform accelerating public works response to potholes, asphalt cracks, and roadway hazards.
           </p>
           <div class="flex flex-wrap items-center gap-4 mb-10">
-            <a href="register" class="inline-flex items-center gap-2 px-6 h-12 rounded-full bg-civic-primary text-white font-semibold text-sm hover:bg-civic-dark transition-colors shadow-sm">
+            <a href="report" class="inline-flex items-center gap-2 px-6 h-12 rounded-full bg-civic-primary text-white font-semibold text-sm hover:bg-civic-dark transition-colors shadow-sm">
               <span class="material-symbols-outlined text-lg">add_circle</span> Report Now
             </a>
             <a href="#map" class="inline-flex items-center gap-2 px-6 h-12 rounded-full border border-civic-primary text-civic-primary font-semibold text-sm hover:bg-civic-light/40 transition-colors">
@@ -304,7 +311,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Complete Standard Footer -->
   <footer class="mt-auto border-t border-civic-border bg-white py-12">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
       <div>
@@ -327,13 +334,10 @@
     private double resolutionRate = 92.4;
     private int avgResponseHours = 36;
     private int districtsCovered = 28;
-
-    @code {
     private string activeTab = "home";
 
     private void SetActiveTab(string tabName)
     {
         activeTab = tabName;
-    }
     }
 }

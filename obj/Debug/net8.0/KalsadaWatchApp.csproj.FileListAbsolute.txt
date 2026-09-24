@@ -27,3 +27,4 @@ C:\Users\L23Y16W33\Downloads\quibuyen\KalsadaWatchApp\obj\Debug\net8.0\refint\Ka
 C:\Users\L23Y16W33\Downloads\quibuyen\KalsadaWatchApp\obj\Debug\net8.0\KalsadaWatchApp.pdb
 C:\Users\L23Y16W33\Downloads\quibuyen\KalsadaWatchApp\obj\Debug\net8.0\KalsadaWatchApp.genruntimeconfig.cache
 C:\Users\L23Y16W33\Downloads\quibuyen\KalsadaWatchApp\obj\Debug\net8.0\ref\KalsadaWatchApp.dll
+C:\Users\L23Y16W33\Downloads\quibuyen\KalsadaWatchApp\obj\Debug\net8.0\KalsadaWatchApp.sourcelink.json
