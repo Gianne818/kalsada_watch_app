@@ -1,0 +1,180 @@
+@using System.Globalization
+@inject IReviewSource ReviewSource
+
+@* Page-scoped: adds the filled star style. The global icon font in App.razor loads outlined icons only. *@
+<HeadContent>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" />
+</HeadContent>
+
+<!-- Citizen Feedback (Linked by #citizen-feedback) -->
+<section id="citizen-feedback" aria-labelledby="citizen-feedback-title" class="py-16 bg-white border-t border-civic-border scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <h2 id="citizen-feedback-title" class="text-2xl font-bold text-civic-title">What Residents Are Saying</h2>
+        <p class="text-xs text-civic-muted mt-1">Ratings and comments from people who reported and tracked road repairs.</p>
+      </div>
+      <a href="rate" class="self-start sm:self-auto inline-flex items-center gap-1.5 min-h-11 px-5 rounded-full text-xs font-semibold bg-civic-primary text-white hover:bg-civic-dark active:scale-95 transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-civic-primary focus-visible:ring-offset-2">
+        <span class="material-symbols-outlined text-sm" aria-hidden="true">star</span> Rate Our Service
+      </a>
+    </div>
+
+    @if (reviews is null)
+    {
+      @* Loading state: same shape as the finished grid *@
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" aria-busy="true">
+        <p class="sr-only" role="status">Loading resident feedback</p>
+        <div class="md:col-span-2 lg:col-span-1 lg:row-span-2 min-h-[16rem] rounded-2xl bg-slate-100 motion-safe:animate-pulse"></div>
+        <div class="md:col-span-2 min-h-[13rem] rounded-xl bg-slate-100 motion-safe:animate-pulse"></div>
+        @for (var i = 0; i < 4; i++)
+        {
+          <div class="min-h-[13rem] rounded-xl bg-slate-100 motion-safe:animate-pulse"></div>
+        }
+      </div>
+    }
+    else if (reviews.Count == 0)
+    {
+      @* Empty state: zero approved reviews *@
+      <div class="rounded-2xl border border-civic-border bg-white p-10 text-center">
+        <div class="w-12 h-12 rounded-full bg-civic-light text-civic-primary flex items-center justify-center mx-auto mb-3">
+          <span class="material-symbols-outlined text-2xl" aria-hidden="true">forum</span>
+        </div>
+        <h3 class="text-base font-bold text-civic-title">No resident feedback yet</h3>
+        <p class="text-xs text-civic-muted mt-1">Be the first to rate a repair or share how it went.</p>
+        <a href="comments" class="mt-3 inline-flex items-center gap-1 min-h-11 px-1 rounded-md text-xs font-semibold text-civic-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-civic-primary">
+          Leave a Comment <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    }
+    else
+    {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        @* Summary tile: calculated from every approved review *@
+        <div class="@(isFullBento ? "md:col-span-2 lg:col-span-1 lg:row-span-2" : "") rounded-2xl bg-civic-navy text-white p-7 flex flex-col gap-4">
+          @if (summary!.Count == 0)
+          {
+            <p class="text-sm font-semibold">No ratings yet</p>
+            <p class="text-xs text-blue-100">Comments are in, but nobody has left stars so far.</p>
+          }
+          else
+          {
+          <p class="sr-only">Average rating @summary.AverageText out of 5, from @summary.Count ratings.</p>
+          <div class="flex flex-col gap-3" aria-hidden="true">
+            <span class="text-5xl font-bold leading-none">@summary.AverageText</span>
+            @StarRow(summary.RoundedStars, "text-yellow-300", "text-blue-100", "text-lg")
+            <span class="text-xs text-blue-100">average from @summary.Count ratings</span>
+          </div>
+          <dl class="flex flex-col gap-2.5 pt-4 border-t border-white/25">
+            @foreach (var b in summary.Distribution)
+            {
+              <div class="grid grid-cols-[3rem_1fr_1.5rem] items-center gap-2 text-xs text-blue-100">
+                <dt>@b.Stars stars</dt>
+                <dd class="h-1.5" aria-hidden="true"><div class="h-1.5 rounded-full bg-yellow-300" style="width: @b.Percent.ToString("0.#", CultureInfo.InvariantCulture)%"></div></dd>
+                <dd class="text-right text-white font-semibold">@b.Count<span class="sr-only"> ratings</span></dd>
+              </div>
+            }
+          </dl>
+          }
+          <a href="comments" class="mt-auto self-start inline-flex items-center gap-1 min-h-11 px-1 rounded-md text-xs font-semibold text-white hover:underline active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-civic-navy">
+            Leave a Comment <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        @for (var i = 0; i < tiles.Count; i++)
+        {
+          var r = tiles[i];
+          var wide = isFullBento && i == 0;
+          var muted = wide ? "text-slate-600" : "text-civic-muted";
+          <article class="@(wide ? "md:col-span-2 bg-civic-bg border-civic-border" : "bg-white border-civic-border") rounded-xl border p-5 flex flex-col gap-3 hover:border-civic-primary/40 transition-colors">
+            <div class="flex items-center justify-between gap-2">
+              @if (r.Rating is int stars)
+              {
+                <div>
+                  <span class="sr-only">Rated @stars out of 5</span>
+                  @StarRow(stars, "text-amber-600", wide ? "text-slate-600" : "text-slate-500", "text-base")
+                </div>
+              }
+              else
+              {
+                <span class="text-[11px] font-semibold text-civic-muted">Comment only</span>
+              }
+              @if (r.IsResolved)
+              {
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span> Resolved
+                </span>
+              }
+            </div>
+            <p class="@(wide ? "text-lg font-semibold text-civic-title leading-normal line-clamp-3" : "text-sm text-civic-body leading-relaxed line-clamp-3")">@r.Comment</p>
+            <div class="mt-auto pt-3 border-t @(wide ? "border-civic-border" : "border-slate-100") flex justify-between gap-2 text-xs">
+              <div>
+                <p class="font-semibold text-civic-title">@r.DisplayName</p>
+                <p class="@muted">@r.Area</p>
+              </div>
+              <div class="text-right @muted">
+                <p><time datetime="@r.PostedAt.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)">@Ago(r.PostedAt)</time></p>
+                @if (!string.IsNullOrEmpty(r.TicketId))
+                {
+                  <p class="font-mono">ID: @r.TicketId</p>
+                }
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+@code {
+    private IReadOnlyList<CitizenReview>? reviews;
+    private ReviewSummary? summary;
+    private IReadOnlyList<CitizenReview> tiles = Array.Empty<CitizenReview>();
+
+    // The bento layout needs exactly 5 review tiles (1 wide + 4) next to the summary.
+    // With fewer reviews the grid drops the spans so no empty cells appear in the middle.
+    private bool isFullBento => tiles.Count == 5;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var approved = (await ReviewSource.GetApprovedReviewsAsync())
+            .Where(r => r.IsApproved)                       // moderation guard, even if the source forgets
+            .ToList();
+        summary = ReviewSummary.From(approved);
+        tiles = approved
+            .Where(r => !string.IsNullOrWhiteSpace(r.Comment))    // a tile needs something to read
+            .OrderByDescending(r => r.PostedAt).Take(5).ToList(); // newest first, never filtered by rating
+        reviews = approved;
+    }
+
+    private static string Ago(DateTimeOffset postedAt)
+    {
+        var span = DateTimeOffset.UtcNow - postedAt;
+        if (span.TotalHours < 1) return "just now";
+        if (span.TotalDays < 1) return $"{(int)span.TotalHours} hours ago";
+        var days = (int)span.TotalDays;
+        if (days == 1) return "1 day ago";
+        if (days < 7) return $"{days} days ago";
+        if (days < 14) return "1 week ago";
+        if (days < 30) return $"{days / 7} weeks ago";
+        if (days < 60) return "1 month ago";
+        return $"{days / 30} months ago";
+    }
+
+    private static RenderFragment StarRow(int rating, string onClass, string offClass, string sizeClass) =>
+        @<span class="flex items-center gap-0.5" aria-hidden="true">
+            @for (var s = 1; s <= 5; s++)
+            {
+                if (s <= rating)
+                {
+                    <span class="material-symbols-outlined @sizeClass @onClass" style="font-variation-settings: 'FILL' 1">star</span>
+                }
+                else
+                {
+                    <span class="material-symbols-outlined @sizeClass @offClass">star</span>
+                }
+            }
+        </span>;
+}

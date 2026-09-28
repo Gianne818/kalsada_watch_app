@@ -9,63 +9,79 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KalsadaWatchApp
 build_property.RootNamespace = KalsadaWatchApp
-build_property.ProjectDir = C:\Users\L23Y16W33\Downloads\quibuyen\KalsadaWatchApp\
+build_property.ProjectDir = /Users/casidey/kalsada_watch_app/kalsada_watch_app/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\L23Y16W33\Downloads\quibuyen\KalsadaWatchApp
+build_property.MSBuildProjectDirectory = /Users/casidey/kalsada_watch_app/kalsada_watch_app
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/App.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Feedback/CitizenFeedback.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9GZWVkYmFjay9DaXRpemVuRmVlZGJhY2sucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/Error.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Feedback/FeedbackForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9GZWVkYmFjay9GZWVkYmFja0Zvcm0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Comments.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db21tZW50cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/Register.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWdpc3Rlci5yYXpvcg==
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/Report.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZXBvcnQucmF6b3I=
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/SignIn.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaWduSW4ucmF6b3I=
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/Verify.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xWZXJpZnkucmF6b3I=
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Rate.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9SYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9SZWdpc3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Routes.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Report.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9SZXBvcnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/_Imports.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/SignIn.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TaWduSW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Layout/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-q01eiyb5nt
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Verify.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9WZXJpZnkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/L23Y16W33/Downloads/quibuyen/KalsadaWatchApp/Components/Layout/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-5wftj19cdn
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XZWF0aGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ymopfuys2q
+
+[/Users/casidey/kalsada_watch_app/kalsada_watch_app/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-vqvburzbwz

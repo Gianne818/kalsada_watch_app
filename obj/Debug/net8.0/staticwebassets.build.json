@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "m/B0nVYxM2G2VBm55xjYvmin1YoK7JigkLfoYXg0zhY=",
+  "Hash": "FyFqfWB/I0WnmdUaqWN+88CBiQlGNrCdDiLaiD74MLs=",
   "Source": "KalsadaWatchApp",
   "BasePath": "_content/KalsadaWatchApp",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "KalsadaWatchApp\\wwwroot",
+      "Name": "KalsadaWatchApp/wwwroot",
       "Source": "KalsadaWatchApp",
-      "ContentRoot": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\",
+      "ContentRoot": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/",
       "BasePath": "_content/KalsadaWatchApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\KalsadaWatchApp.styles.css",
+      "Identity": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/Debug/net8.0/scopedcss/bundle/KalsadaWatchApp.styles.css",
       "SourceId": "KalsadaWatchApp",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/Debug/net8.0/scopedcss/bundle/",
       "BasePath": "_content/KalsadaWatchApp",
       "RelativePath": "KalsadaWatchApp.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\KalsadaWatchApp.styles.css"
+      "OriginalItemSpec": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/Debug/net8.0/scopedcss/bundle/KalsadaWatchApp.styles.css"
     },
     {
-      "Identity": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KalsadaWatchApp.bundle.scp.css",
+      "Identity": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/Debug/net8.0/scopedcss/projectbundle/KalsadaWatchApp.bundle.scp.css",
       "SourceId": "KalsadaWatchApp",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/Debug/net8.0/scopedcss/projectbundle/",
       "BasePath": "_content/KalsadaWatchApp",
       "RelativePath": "KalsadaWatchApp.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KalsadaWatchApp.bundle.scp.css"
+      "OriginalItemSpec": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/Debug/net8.0/scopedcss/projectbundle/KalsadaWatchApp.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\app.css",
+      "Identity": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/app.css",
       "SourceId": "KalsadaWatchApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\",
+      "ContentRoot": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/",
       "BasePath": "_content/KalsadaWatchApp",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -71,13 +71,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\app.css"
+      "OriginalItemSpec": "wwwroot/app.css"
     },
     {
-      "Identity": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/bootstrap/bootstrap.min.css",
       "SourceId": "KalsadaWatchApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\",
+      "ContentRoot": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/",
       "BasePath": "_content/KalsadaWatchApp",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -90,13 +90,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
+      "OriginalItemSpec": "wwwroot/bootstrap/bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/bootstrap/bootstrap.min.css.map",
       "SourceId": "KalsadaWatchApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\",
+      "ContentRoot": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/",
       "BasePath": "_content/KalsadaWatchApp",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -109,13 +109,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
+      "OriginalItemSpec": "wwwroot/bootstrap/bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\favicon.png",
+      "Identity": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/favicon.png",
       "SourceId": "KalsadaWatchApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\",
+      "ContentRoot": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/",
       "BasePath": "_content/KalsadaWatchApp",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -128,7 +128,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.png"
+      "OriginalItemSpec": "wwwroot/favicon.png"
     }
   ]
 }

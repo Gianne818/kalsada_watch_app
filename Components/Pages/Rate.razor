@@ -1,0 +1,86 @@
+@page "/rate"
+@using KalsadaWatchApp.Components.Feedback
+
+<PageTitle>KalsadaWatch - Rate Our Service</PageTitle>
+
+
+<div class="min-h-screen font-sans bg-civic-bg text-civic-body antialiased flex flex-col scroll-smooth page-transition">
+  <!-- Navigation Bar with Animated Indicator -->
+  <header class="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-civic-border transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+      <!-- Left Logo -->
+      <a href="/?tab=home#top" class="flex items-center gap-3 group active:scale-95 transition-transform duration-200 cursor-pointer">
+        <div class="w-10 h-10 rounded-xl bg-civic-light text-civic-primary flex items-center justify-center group-hover:bg-civic-primary group-hover:text-white transition-all duration-300 shadow-sm">
+          <span class="material-symbols-outlined text-2xl">account_balance</span>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight text-civic-primary group-hover:text-civic-dark transition-colors">KalsadaWatch</span>
+          <span class="block text-xs text-civic-muted -mt-0.5">Public Infrastructure Monitoring</span>
+        </div>
+      </a>
+
+      <!-- Functional In-Page Nav Links with Animated Active Indicator -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        
+        <!-- Home Tab -->
+        <a href="/?tab=home#top" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          Home
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- Report Road Tab -->
+        <a href="report" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          Report Road
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- How It Works Tab -->
+        <a href="/?tab=workflow#workflow" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          How It Works
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- Road Damage Map Tab -->
+        <a href="verify" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-muted hover:text-civic-primary">
+          Road Damage Map
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-0 opacity-0 group-hover:w-full group-hover:opacity-40"></span>
+        </a>
+
+        <!-- Feedback Tab (ACTIVE) -->
+        <a href="/?tab=feedback#citizen-feedback" 
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 text-civic-primary font-semibold">
+          Feedback
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]"></span>
+        </a>
+
+      </nav>
+
+      <!-- Routing Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="signin" class="text-sm font-semibold text-civic-primary px-4 py-2 hover:bg-civic-light/60 active:scale-95 rounded-full transition-all duration-200 cursor-pointer">Sign In</a>
+        <a href="register" class="text-sm font-semibold text-white bg-civic-primary hover:bg-civic-dark active:scale-95 hover:shadow-md hover:-translate-y-0.5 px-5 py-2.5 rounded-full shadow-sm transition-all duration-200 cursor-pointer inline-flex items-center gap-1">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-2xl mx-auto w-full py-12 px-6">
+    <div class="bg-white rounded-3xl border border-civic-border p-8 sm:p-10 shadow-[0_10px_30px_-10px_rgba(37,99,235,0.08)]">
+      <h1 class="text-2xl sm:text-[28px] font-bold text-civic-title tracking-tight">Rate Our Service</h1>
+      <p class="text-sm text-civic-muted mt-2 mb-8 leading-relaxed">
+        Tell us how your road report or repair went. You can add a comment too.
+      </p>
+
+      <FeedbackForm CommentFirst="false" />
+    </div>
+
+    <p class="text-xs text-center text-civic-muted mt-6">
+      <a href="/?tab=feedback#citizen-feedback" class="font-semibold text-civic-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-civic-primary rounded">Read what residents are saying</a>
+      <span class="mx-1" aria-hidden="true">|</span>
+      <a href="/?tab=home#top" class="font-semibold text-civic-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-civic-primary rounded">Back to Home</a>
+    </p>
+  </main>
+</div>

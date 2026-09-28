@@ -1,39 +1,39 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KalsadaWatchApp.bundle.scp.css",
-      "PackagePath": "staticwebassets\\KalsadaWatchApp.bundle.scp.css"
+      "Id": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/Debug/net8.0/scopedcss/projectbundle/KalsadaWatchApp.bundle.scp.css",
+      "PackagePath": "staticwebassets/KalsadaWatchApp.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\app.css",
-      "PackagePath": "staticwebassets\\app.css"
+      "Id": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
     },
     {
-      "Id": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\bootstrap\\bootstrap.min.css",
-      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+      "Id": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\bootstrap\\bootstrap.min.css.map",
-      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+      "Id": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\wwwroot\\favicon.png",
-      "PackagePath": "staticwebassets\\favicon.png"
+      "Id": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.KalsadaWatchApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.KalsadaWatchApp.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.KalsadaWatchApp.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.KalsadaWatchApp.props",
       "PackagePath": "build\\KalsadaWatchApp.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.KalsadaWatchApp.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.KalsadaWatchApp.props",
       "PackagePath": "buildMultiTargeting\\KalsadaWatchApp.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.KalsadaWatchApp.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.KalsadaWatchApp.props",
       "PackagePath": "buildTransitive\\KalsadaWatchApp.props"
     }
   ],

@@ -1,5 +1,6 @@
 @page "/"
 @rendermode InteractiveServer
+@using KalsadaWatchApp.Components.Feedback
 
 <PageTitle>KalsadaWatch - Public Infrastructure Monitoring</PageTitle>
 
@@ -51,20 +52,12 @@
           <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "map" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
-        <!-- Statistics Tab -->
-        <a href="#stats" 
-           @onclick='() => SetActiveTab("stats")'
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "stats" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
-          Statistics
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "stats" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
-        </a>
-
-        <!-- Help / Support Tab -->
-        <a href="#emergency" 
-           @onclick='() => SetActiveTab("emergency")'
-           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "emergency" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
-          Help / Support
-          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "emergency" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
+        <!-- Feedback Tab -->
+        <a href="#citizen-feedback" 
+           @onclick='() => SetActiveTab("feedback")'
+           class="group relative pb-2 transition-all duration-200 cursor-pointer active:scale-95 @(activeTab == "feedback" ? "text-civic-primary font-semibold" : "text-civic-muted hover:text-civic-primary")">
+          Feedback
+          <span class="absolute bottom-0 left-0 h-[2.5px] rounded-full bg-civic-primary transition-all duration-300 ease-out @(activeTab == "feedback" ? "w-full opacity-100 shadow-[0_1px_6px_rgba(37,99,235,0.4)]" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40")"></span>
         </a>
 
       </nav>
@@ -148,21 +141,21 @@
             </div>
           </div>
 
-          <!-- Urgent Assistance (Linked by #emergency) -->
+          <!-- Rate & Comment (Linked by #emergency; anchor kept for existing links) -->
           <div id="emergency" class="rounded-2xl p-6 text-white bg-[#2246CC] scroll-mt-24">
             <div class="flex items-center gap-2 mb-2">
-              <span class="material-symbols-outlined text-xl text-yellow-300">emergency</span>
-              <h3 class="text-lg font-bold">Need Urgent Road Assistance?</h3>
+              <span class="material-symbols-outlined text-xl text-yellow-300" aria-hidden="true">star</span>
+              <h3 class="text-lg font-bold">How Was Your Experience?</h3>
             </div>
             <p class="text-xs text-blue-100 mb-6 leading-relaxed">
-              Severe road collapse or dangerous hazard risk? Contact rapid emergency road dispatch immediately.
+              Your feedback helps us fix roads faster. Rate our service or leave a comment in under a minute.
             </p>
-            <div class="flex items-center gap-3">
-              <a href="tel:911" class="inline-flex items-center gap-2 px-4 py-2 border border-white/40 rounded-lg text-xs font-semibold text-white hover:bg-white/10 transition-colors">
-                <span class="material-symbols-outlined text-sm">call</span> Call Hotline / Emergency
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="rate" class="inline-flex items-center gap-2 px-4 py-2 min-h-11 border border-white/40 rounded-lg text-xs font-semibold text-white hover:bg-white/10 active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2246CC]">
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">star</span> Rate Our Service
               </a>
-              <a href="#map" class="text-xs font-semibold text-white hover:underline flex items-center gap-1">
-                Priority Dispatch &rarr;
+              <a href="comments" class="inline-flex items-center gap-1 min-h-11 px-1 rounded-md text-xs font-semibold text-white hover:underline active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2246CC]">
+                Leave a Comment <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>
@@ -309,6 +302,8 @@
       </div>
     </div>
   </section>
+
+  <CitizenFeedback />
 </div>
 
 @code {

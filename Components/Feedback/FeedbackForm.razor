@@ -1,0 +1,96 @@
+@*
+  Shared review form used by /rate (stars first) and /comments (comment first).
+  One review = optional star rating + optional comment (at least one), plus optional
+  name, area and report ID. This matches the CitizenReview model on the homepage.
+
+  FRONT-END ONLY: there is no <form> element, no submit handler and no server call,
+  so nothing typed or clicked here is sent or saved.
+*@
+
+<HeadContent>
+  <!-- Adds the filled star style. The global icon font in App.razor loads outlined icons only. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" />
+</HeadContent>
+
+<style>
+  .kw-stars { display: inline-flex; flex-direction: row-reverse; justify-content: flex-end; gap: 0.25rem; }
+  .kw-stars input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .kw-stars label { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 0.5rem; color: #64748B; cursor: pointer; transition: color 150ms ease, transform 150ms ease; }
+  .kw-stars label .material-symbols-outlined { font-size: 2.25rem; font-variation-settings: 'FILL' 0; }
+  .kw-stars input:checked ~ label,
+  .kw-stars label:hover,
+  .kw-stars label:hover ~ label { color: #D97706; }
+  .kw-stars input:checked ~ label .material-symbols-outlined,
+  .kw-stars label:hover .material-symbols-outlined,
+  .kw-stars label:hover ~ label .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+  .kw-stars label:active { transform: scale(0.95); }
+  .kw-stars input:focus-visible + label { outline: 2px solid #2563EB; outline-offset: 2px; }
+</style>
+
+<div class="flex flex-col gap-6">
+  <p class="text-xs text-civic-muted -mt-2">Add a star rating, a comment, or both. The other details are optional.</p>
+
+  @if (CommentFirst)
+  {
+    @CommentBlock
+    @RatingBlock
+  }
+  else
+  {
+    @RatingBlock
+    @CommentBlock
+  }
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-slate-100">
+    <div class="flex flex-col gap-2">
+      <label for="fb-name" class="text-xs font-semibold text-civic-title">Name to show <span class="font-normal text-civic-muted">(optional)</span></label>
+      <input id="fb-name" type="text" maxlength="40" autocomplete="off" class="@inputClass" placeholder="e.g. Marisol B." />
+      <p class="text-[11px] text-civic-muted">First name and last initial. Leave blank to post as Anonymous resident.</p>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="fb-area" class="text-xs font-semibold text-civic-title">Area <span class="font-normal text-civic-muted">(optional)</span></label>
+      <input id="fb-area" type="text" maxlength="60" autocomplete="off" class="@inputClass" placeholder="e.g. Rizal Ave, Ermita" />
+      <p class="text-[11px] text-civic-muted">Barangay or street the repair was on.</p>
+    </div>
+    <div class="flex flex-col gap-2 sm:col-span-2">
+      <label for="fb-ticket" class="text-xs font-semibold text-civic-title">Report ID <span class="font-normal text-civic-muted">(optional)</span></label>
+      <input id="fb-ticket" type="text" maxlength="12" autocomplete="off" class="@inputClass font-mono sm:max-w-[14rem]" placeholder="e.g. KW-8910" />
+      <p class="text-[11px] text-civic-muted">If this is about a report you filed, add its ID so we can link your review to it.</p>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" disabled class="w-full h-12 rounded-full bg-slate-200 text-slate-600 font-semibold text-sm flex items-center justify-center gap-2 cursor-not-allowed">
+      <span class="material-symbols-outlined text-lg" aria-hidden="true">send</span> Submit Review
+    </button>
+    <p class="text-xs text-center text-civic-muted mt-3">
+      Reviews are coming soon. This page is a preview and does not save or send anything.
+    </p>
+  </div>
+</div>
+
+@code {
+    /// <summary>True on /comments (comment box first), false on /rate (stars first).</summary>
+    [Parameter] public bool CommentFirst { get; set; }
+
+    private const string inputClass = "w-full min-h-11 px-4 py-2.5 rounded-xl border border-civic-border text-sm text-civic-title placeholder:text-slate-500 focus:outline-none focus:border-civic-primary focus:ring-2 focus:ring-civic-primary/15";
+
+    private RenderFragment RatingBlock => @<fieldset>
+        <legend class="block text-xs font-semibold text-civic-title mb-2">Your rating <span class="font-normal text-civic-muted">(optional if you leave a comment)</span></legend>
+        <div class="kw-stars">
+            @for (var n = 5; n >= 1; n--)
+            {
+                var id = $"fb-star-{n}";
+                <input type="radio" id="@id" name="fb-rating" value="@n" />
+                <label for="@id"><span class="material-symbols-outlined" aria-hidden="true">star</span><span class="sr-only">@n @(n == 1 ? "star" : "stars")</span></label>
+            }
+        </div>
+        <p class="text-[11px] text-civic-muted mt-2">1 star is poor, 5 stars is excellent.</p>
+    </fieldset>;
+
+    private RenderFragment CommentBlock => @<div class="flex flex-col gap-2">
+        <label for="fb-comment" class="text-xs font-semibold text-civic-title">Your comment <span class="font-normal text-civic-muted">(optional if you leave a rating)</span></label>
+        <textarea id="fb-comment" rows="5" maxlength="500" class="@inputClass resize-none" placeholder="e.g. The pothole on Rizal Avenue was patched in two days."></textarea>
+        <p class="text-[11px] text-civic-muted">Up to 500 characters. Mention the street if it helps.</p>
+    </div>;
+}

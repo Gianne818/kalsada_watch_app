@@ -8,32 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\L23Y16W33\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/casidey/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\KalsadaWatchApp.csproj",
+      "projectUniqueName": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/KalsadaWatchApp.csproj",
       "projectName": "KalsadaWatchApp",
-      "projectPath": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\KalsadaWatchApp.csproj",
-      "packagesPath": "C:\\Users\\L23Y16W33\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\L23Y16W33\\Downloads\\quibuyen\\KalsadaWatchApp\\obj\\",
+      "projectPath": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/KalsadaWatchApp.csproj",
+      "packagesPath": "/Users/casidey/.nuget/packages/",
+      "outputPath": "/Users/casidey/kalsada_watch_app/kalsada_watch_app/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\L23Y16W33\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/casidey/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -75,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/casidey/.dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

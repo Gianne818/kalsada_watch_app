@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KalsadaWatchApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+507d302e4857a6ca913a42d6dea622f3df99c65f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e21ad0ec7a5e023ac608ca4b18911a18831d7c92")]
 [assembly: System.Reflection.AssemblyProductAttribute("KalsadaWatchApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KalsadaWatchApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
